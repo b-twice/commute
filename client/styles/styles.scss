@@ -1,0 +1,135 @@
+@import url(http://fonts.googleapis.com/css?family=Oswald:700);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+
+$white: #FFF;
+$soft-grey:rgb(236, 240, 241);
+$silver:rgb(189, 195, 199);
+$blue: rgba(52, 152, 219,1.0);
+$sunflower:rgb(241, 196, 15);
+$asphalt:rgb(52, 73, 94);
+$midnight-blue:rgb(44,62,80);
+$dark-grey: rgb(189, 195, 199);
+$light-green: #2ECC71;
+
+/* ==========================================================================
+   3. BASE
+   ========================================================================== */
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  opacity: 1;
+  font-family: "Montserrat", sans-serif;
+  font-size:1.5rem;
+  letter-spacing:0.01em;
+  word-wrap:break-word;
+  text-rendering:optimizeLegibility;
+  line-height: 1.45;
+  margin:0;
+}
+h1, h2, h3,
+h4, h5, h6 {
+  line-height: 1.15em;
+}
+h1 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+  text-indent: -3px;
+}
+h2 {
+  font-size: 3.4rem;
+  letter-spacing: 2px;
+}
+h3 {
+  font-size: 3.2rem;
+}
+h4 {
+  font-size: 1.6rem;
+}
+h5 {
+  font-size: 2rem;
+  margin-bottom:0.2em;
+}
+h6 {
+  font-size: 2rem;
+}
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ==========================================================================
+   3. Utilities
+   ========================================================================== */
+.svg-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%; /* aspect ratio */
+  vertical-align: top;
+  overflow: hidden;
+}
+.svg-content-responsive {
+  display: inline-block;
+  position: absolute;
+  top:5px;
+  left: 0;
+}
+
+.line {
+  fill: none;
+  stroke: $sunflower;
+  stroke-width: 1.5px;
+}
+
+/* ==========================================================================
+   3. MAP
+   ========================================================================== */
+
+.content {
+  display:flex;
+  flex-direction:column;
+  width:100%;
+  height:100vh;
+  margin:0;
+  padding:0;
+}
+
+/* ==========================================================================
+   3. MAP
+   ========================================================================== */
+
+.map-container {
+  flex:6;
+  height:800px;
+}
+
+/* ==========================================================================
+   3. Graph
+   ========================================================================== */
+.graph-container {
+  display:flex;
+  background: $asphalt;
+  flex:1;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: $white;
+  shape-rendering: crispEdges;
+}
+.tick text {
+  fill: $white;
+  font-size: 1.3rem;
+}
+.area {
+  fill: $sunflower;
+  stroke-width: 0;
+  opacity:.5;
+}

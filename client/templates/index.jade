@@ -1,0 +1,20 @@
+doctype html
+html(lang="en")
+   head
+      title Bike Commute
+      link(rel='stylesheet', href='styles.css')
+      link(rel='stylesheet', href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')
+      link(rel='stylesheet', href='https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.css')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+   body
+      section.content
+         div.map-container#map
+         div.graph-container
+            div.svg-container#graph
+
+      script(src="https://api.mapbox.com/mapbox.js/v2.2.3/mapbox.js")
+      script(src="//code.jquery.com/jquery-1.11.3.min.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js")
+      script(src="build.js")
