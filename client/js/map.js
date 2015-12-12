@@ -14,17 +14,13 @@
     var commuteLyr = L.geoJson(null, {});
     map.addLayer(commuteLyr);
 
-    const color = {
-        "Work": "#f39c12",
-        "Home": "#9b59b6"
-    };
     d3.json('./public/commute.topo.json', (e, d ) => {
         var commuteTopo = topojson.feature(d, d.objects.commute);
         commuteLyr.addData(commuteTopo);
         map.fitBounds(commuteLyr.getBounds());
         commuteLyr.eachLayer(function(f, l) {
             f.setStyle(defaultStyle);
-            f.setStyle({color: color[f.feature.properties.dest]})
+            f.setStyle({color: $color[f.feature.properties.dest]});
             f.on("mouseover", function (e) {
                 f.setStyle(highlightStyle);
                 f.bringToFront();
