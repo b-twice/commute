@@ -31,9 +31,11 @@
 
             d3.json("./public/sample.json", (error, data) => {
                 var line = d3.svg.line()
+                    .interpolate("basis")
                     .x(d => {return x(d.dist)})
                     .y(d => {return y(d.elev)});
                 var area = d3.svg.area()
+                    .interpolate("basis")
                     .x(d => {return x(d.dist)})
                     .y0(height )
                     .y1(d => {return y(d.elev)});
