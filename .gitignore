@@ -2,5 +2,4 @@ build/
 node_modules/
 data/
 connections.js
-client/json/d3/
 .DS_Store
