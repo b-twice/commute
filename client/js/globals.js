@@ -1,4 +1,5 @@
 const $color = {
-    "Work": "#e67e22",
-    "Home": "#9b59b6"
+    "Work": "#2980b9",
+    "Home": "#e74c3c",
+    "Overlap": "#8e44ad"
 };
