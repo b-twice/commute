@@ -3,7 +3,7 @@ CENTERLINES = ftp://ftp.ci.richmond.va.us/GIS/Shapefiles/Centerlines/Centerlines
 
 commute:data/commute.topo.json
 elevation:data/elevation.topo.json
-contours:data/shp/Contours.shp
+contours:data/shp/Contours_4326.shp
 centerlines:data/shp/route_centerlines.shp
 
 clean:
@@ -53,6 +53,11 @@ data/zip/Centerlines.zip:
 	mv $@.download $@
 
 ### CONTOURS SRC
+
+data/shp/Contours_4326.shp:data/shp/Contours.shp
+	ogr2ogr -f "ESRI SHAPEFILE" \
+	-t_srs EPSG:4326 \
+	$@ $<
 
 data/shp/Contours.shp:data/zip/Contours.zip
 	mkdir -p $(dir $@)

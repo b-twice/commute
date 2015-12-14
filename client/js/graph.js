@@ -47,22 +47,38 @@
                     g.append("path")
                         .attr("class", "area")
                         .attr("d", area(d.values))
-                        .attr("fill", $color[d.key]);
+                        .attr("fill", $color[d.key])
+                        .attr("id", d.key)
+                        .on("mouseover", $graphMouseOver)
+                        .on("mouseout", $graphMouseOut);
                     //g.append("path")
                     //    .attr("class", "line")
                     //    .attr("d", line(obj))
                     //    .attr("stroke", $color[key];
 
                 }
-                g.append("g")
-                    .attr("class", "y axis")
-                    .attr("transform", `translate(${width-30}, 0`)
-                    .call(yAxis);
-                g.append("g")
-                    .attr("class", "x axis")
-                    .attr("transform", `translate(0,${height - 30})`)
-                    .call(xAxis);
+                //g.append("g")
+                //    .attr("class", "y axis")
+                //    .attr("transform", `translate(${width-30}, 0`)
+                //    .call(yAxis);
+                //g.append("g")
+                //    .attr("class", "x axis")
+                //    .attr("transform", `translate(0,${height - 30})`)
+                //    .call(xAxis);
+            function mapMouseOver() {
+                var s = `#${this.id}`;
+                $(this).css("opacity", "1");
+                $(s).css("opacity", "1");
+                $(`.legend-item${s}`).css("opacity", "1");
 
+            }
+            function mapMouseOut() {
+                var s = `#${this.id}`;
+                $(this).css("opacity", ".5");
+                $(s).css("opacity", ".5");
+                $(`.legend-item${s}`).css("opacity", ".5");
+
+            }
             });
         }
     });

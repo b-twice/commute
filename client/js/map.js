@@ -6,11 +6,9 @@
     });
     var defaultStyle = {
         width: 5,
-        opacity: .5
+        opacity:1
     };
-    var highlightStyle = {
-        opacity: 1
-    };
+
     var commuteLyr = L.geoJson(null, {});
     map.addLayer(commuteLyr);
 
@@ -19,16 +17,17 @@
         commuteLyr.addData(commuteTopo);
         map.fitBounds(commuteLyr.getBounds());
         commuteLyr.eachLayer(function(f, l) {
-            f.setStyle(defaultStyle);
-            f.setStyle({color: $color[f.feature.properties.dest]});
-            f.on("mouseover", function (e) {
-                f.setStyle(highlightStyle);
-                f.bringToFront();
+            var key = f.feature.properties.dest.toLowerCase();
+            f.setStyle(defaultStyle)
+                .setStyle({color: $color[key]});
+            $(f._container).attr('id', key);
+            $(f._container).css("opacity", ".5");
+            f.on("mouseover", () => {
+                (f => {$mapMouseOver(f)})(f);
             });
-            f.on("mouseout", function(e) {
-                f.setStyle(defaultStyle);
-                f.bringToBack();
-            })
+            f.on("mouseout", () => {
+                (f => {$mapMouseOut(f)})(f);
+            });
         })
     } )
 })();

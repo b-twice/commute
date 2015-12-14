@@ -2,6 +2,10 @@
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 
+$work: #2980b9;
+$home: #e74c3c;
+$poi: #8e44ad;
+
 $white: #FFF;
 $soft-grey:rgb(236, 240, 241);
 $silver:rgb(189, 195, 199);
@@ -115,7 +119,7 @@ a {
   position:absolute;
   height:200px;
   width:100%;
-  bottom:0;
+  bottom:30px;
   z-index:1;
 }
 
@@ -131,6 +135,67 @@ a {
 .area {
   stroke-width: 0;
   stroke:none;
+  cursor:pointer;
   opacity:.5;
 }
 
+/* ==========================================================================
+   3. Legend
+   ========================================================================== */
+
+.legend {
+  display:flex;
+  position:absolute;
+
+  height:30px;
+  bottom:0;
+  width:100%;
+  justify-content:center;
+  align-items:center;
+  z-index:1
+}
+.legend:before {
+  content:"";
+  position: absolute;
+  background: rgba(255, 255,255, 0.5);
+  left:0;
+  height:30px;
+  width:100%;
+  bottom:0;
+  z-index:-1;
+}
+.legend-item {
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  padding: 0 10px;
+  opacity: .7;
+  font-size:1.2rem;
+  cursor:pointer;
+}
+.legend-item:hover {
+  opacity: 1;
+}
+.legend-item:focus {
+  opacity:1;
+}
+.legend-marker {
+  display:block;
+  width:30px;
+  height:15px;
+}
+.legend-item#work .legend-marker{
+  background-color:$work;
+}
+.legend-item#home .legend-marker{
+  background-color:$home;
+}
+.legend-item#poi .legend-marker{
+  background-color:$poi;
+  border-radius:999px;
+  width:15px;
+  height:15px;
+}
+.legend-text {
+  padding-left: 10px;
+}
