@@ -28,3 +28,21 @@ function $graphMouseOut() {
     $(s).css("opacity", $defaultOpacity);
     $(`.legend-item${s}`).css("opacity", $defaultOpacity);
 }
+
+$(".legend-item").hover(
+    function () {
+        var el = $(this);
+        var elID = $(this).attr("id");
+        $(`.area#${elID}`).css("opacity", $selectOpacity);
+        $(this).css("opacity", $selectOpacity);
+        $(`#${elID}`).css("opacity", $selectOpacity);
+    },
+    function() {
+        var el = $(this);
+        var elID = $(this).attr("id");
+        $(`.area#${elID}`).css("opacity", $defaultOpacity);
+        $(this).css("opacity", $defaultOpacity);
+        $(`#${elID}`).css("opacity", $defaultOpacity);
+
+    }
+);

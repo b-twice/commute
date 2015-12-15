@@ -129,7 +129,7 @@ a {
   shape-rendering: crispEdges;
 }
 .tick text {
-  fill: #000;
+  fill: $white;
   font-size: 1.3rem;
 }
 .area {
@@ -137,6 +137,9 @@ a {
   stroke:none;
   cursor:pointer;
   opacity:.5;
+}
+.graph-title {
+  fill: $white;
 }
 
 /* ==========================================================================

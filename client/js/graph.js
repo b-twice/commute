@@ -24,12 +24,8 @@
                 .orient("bottom");
             var yAxis = d3.svg.axis()
                 .scale(y)
-                .orient("left")
-                .ticks(10);
-            var line = d3.svg.line()
-                .interpolate("basis")
-                .x(d => {return x(d.distance)})
-                .y(d => {return y(d.elevation)});
+                .orient("right")
+                .ticks(11);
             var area = d3.svg.area()
                 .interpolate("basis")
                 .x(d => {return x(d.distance)})
@@ -40,9 +36,11 @@
                     d.distance = parseFloat(d.distance).toFixed(2);
                     d.elevation = +d.elevation;
                 });
-                data.sort(function(a, b) {
-                    return d3.descending(a.distance, b.distance)
-                });
+                var workCommute = data.filter(d => {return d.route == "work"})
+                    .sort((a,b) => {return d3.descending(a.distance, b.distance)});
+                var homeCommute = data.filter(d => {return d.route == "home"})
+                    .sort((a,b) => {return d3.ascending(a.distance, b.distance)});
+                data = homeCommute.concat(workCommute);
                 var g = svg.append("g");
                 x.domain(d3.extent(data, d => { return d.distance}));
                 y.domain([0, d3.max(data, d => { return d.elevation})]);
@@ -57,20 +55,20 @@
                         .attr("id", d.key)
                         .on("mouseover", $graphMouseOver)
                         .on("mouseout", $graphMouseOut);
-                    //g.append("path")
-                    //    .attr("class", "line")
-                    //    .attr("d", line(d.values))
-                    //    .attr("stroke", $color[d.key]);
 
                 }
                 g.append("g")
                     .attr("class", "y axis")
-                    .attr("transform", `translate(${width-30}, 0`)
                     .call(yAxis);
                 g.append("g")
                     .attr("class", "x axis")
                     .attr("transform", `translate(0,${height - 30})`)
-                    .call(xAxis);
+                    .call(xAxis)
+                    .append("text")
+                    .attr("class", "graph-title")
+                    .attr("transform", `translate(${(width -170)/2}, -10)`)
+                    .text("Elevation Profile");
+
             });
         }
     });
