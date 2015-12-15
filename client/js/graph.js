@@ -21,25 +21,31 @@
                 .range([height, 0]);
             var xAxis = d3.svg.axis()
                 .scale(x)
-                .orient("bottom")
-                .ticks("5");
+                .orient("bottom");
             var yAxis = d3.svg.axis()
                 .scale(y)
                 .orient("left")
                 .ticks(10);
             var line = d3.svg.line()
                 .interpolate("basis")
-                .x(d => {return x(d.dist)})
-                .y(d => {return y(d.elev)});
+                .x(d => {return x(d.distance)})
+                .y(d => {return y(d.elevation)});
             var area = d3.svg.area()
                 .interpolate("basis")
-                .x(d => {return x(d.dist)})
+                .x(d => {return x(d.distance)})
                 .y0(height)
-                .y1(d => {return y(d.elev)});
-            d3.json("./public/sample.json", (error, data) => {
+                .y1(d => {return y(d.elevation)});
+            d3.csv("./public/graph.csv", (error, data) => {
+                data.forEach(d => {
+                    d.distance = parseFloat(d.distance).toFixed(2);
+                    d.elevation = +d.elevation;
+                });
+                data.sort(function(a, b) {
+                    return d3.descending(a.distance, b.distance)
+                });
                 var g = svg.append("g");
-                x.domain(d3.extent(data, d => { return d.dist}));
-                y.domain([0, d3.max(data, d => { return d.elev})]);
+                x.domain(d3.extent(data, d => { return d.distance}));
+                y.domain([0, d3.max(data, d => { return d.elevation})]);
                 var dataNest = d3.nest()
                     .key(d => {return d.route;})
                     .entries(data);
@@ -53,32 +59,18 @@
                         .on("mouseout", $graphMouseOut);
                     //g.append("path")
                     //    .attr("class", "line")
-                    //    .attr("d", line(obj))
-                    //    .attr("stroke", $color[key];
+                    //    .attr("d", line(d.values))
+                    //    .attr("stroke", $color[d.key]);
 
                 }
-                //g.append("g")
-                //    .attr("class", "y axis")
-                //    .attr("transform", `translate(${width-30}, 0`)
-                //    .call(yAxis);
-                //g.append("g")
-                //    .attr("class", "x axis")
-                //    .attr("transform", `translate(0,${height - 30})`)
-                //    .call(xAxis);
-            function mapMouseOver() {
-                var s = `#${this.id}`;
-                $(this).css("opacity", "1");
-                $(s).css("opacity", "1");
-                $(`.legend-item${s}`).css("opacity", "1");
-
-            }
-            function mapMouseOut() {
-                var s = `#${this.id}`;
-                $(this).css("opacity", ".5");
-                $(s).css("opacity", ".5");
-                $(`.legend-item${s}`).css("opacity", ".5");
-
-            }
+                g.append("g")
+                    .attr("class", "y axis")
+                    .attr("transform", `translate(${width-30}, 0`)
+                    .call(yAxis);
+                g.append("g")
+                    .attr("class", "x axis")
+                    .attr("transform", `translate(0,${height - 30})`)
+                    .call(xAxis);
             });
         }
     });
