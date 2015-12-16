@@ -2,7 +2,7 @@ CONTOURS = ftp://ftp.ci.richmond.va.us/GIS/Shapefiles/Contours/Contours.zip
 CENTERLINES = ftp://ftp.ci.richmond.va.us/GIS/Shapefiles/Centerlines/Centerlines.zip
 
 commute:data/commute.topo.json
-elevation:data/elevation.topo.json
+poi:data/poi.topo.json
 contours:data/shp/Contours_4326.shp
 centerlines:data/shp/route_centerlines.shp
 
@@ -24,12 +24,13 @@ data/commute.geo.json:data/shp/bike_commute.shp
 
 ### ELEVATION
 
-data/elevation.topo.json:data/elevation.geo.json
+data/poi.topo.json:data/poi.geo.json
 	topojson -o $@ \
+	--properties location=Location,description=Descriptio \
 	-- \
-	commute=$<
+	poi=$<
 
-data/elevation.geo.json:data/shp/contours_nom2.shp
+data/poi.geo.json:data/shp/poi.shp
 	ogr2ogr -f GeoJSON \
 	-t_srs EPSG:4326 \
 	$@ $<

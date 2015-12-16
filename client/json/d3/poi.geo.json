@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "Location": "Home", "Descriptio": "On the edge of the Fan, home is where I cook Vegan food and sleep deeply." }, "geometry": { "type": "Point", "coordinates": [ -77.46787127551481, 37.559819734601106 ] } },
+{ "type": "Feature", "properties": { "id": 2, "Location": "Work", "Descriptio": "Where I toil away in a place so called \"The Bottom.\"" }, "geometry": { "type": "Point", "coordinates": [ -77.431995335895664, 37.532916250108897 ] } }
+]
+}

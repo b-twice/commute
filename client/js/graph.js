@@ -21,11 +21,12 @@
                 .range([height, 0]);
             var xAxis = d3.svg.axis()
                 .scale(x)
-                .orient("bottom");
+                .orient("bottom")
+                .ticks(5);
             var yAxis = d3.svg.axis()
                 .scale(y)
                 .orient("right")
-                .ticks(11);
+                .ticks(10);
             var area = d3.svg.area()
                 .interpolate("basis")
                 .x(d => {return x(d.distance)})
@@ -57,17 +58,13 @@
                         .on("mouseout", $graphMouseOut);
 
                 }
-                g.append("g")
+                svg.append("g")
                     .attr("class", "y axis")
                     .call(yAxis);
-                g.append("g")
+                svg.append("g")
                     .attr("class", "x axis")
                     .attr("transform", `translate(0,${height - 30})`)
-                    .call(xAxis)
-                    .append("text")
-                    .attr("class", "graph-title")
-                    .attr("transform", `translate(${(width -170)/2}, -10)`)
-                    .text("Elevation Profile");
+                    .call(xAxis);
 
             });
         }

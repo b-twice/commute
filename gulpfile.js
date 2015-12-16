@@ -36,7 +36,7 @@ gulp.task('compress', () => {
         .pipe(babel({
             presets: ['babel-preset-es2015']
         }))
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest('build'));
 });
 gulp.task('d3_json', () => {
